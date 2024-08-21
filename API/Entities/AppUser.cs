@@ -9,6 +9,6 @@ public class AppUser
 
     public required byte[] PasswordHash { get; set; }
 
-    public required byte[] PsswordSalt { get; set; }
+    public required byte[] PasswordSalt { get; set; }
    
 }
