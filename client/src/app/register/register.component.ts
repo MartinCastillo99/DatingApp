@@ -1,13 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
+  usersFromHomeComponent = input.required<any>();
+  cancelRegister = output<boolean>();
   model: any = {}
 
   register() {
@@ -15,7 +18,7 @@ export class RegisterComponent {
   }
 
   cancel() {
-    console.log('cancelled');
+    this.cancelRegister.emit(false);
   }
 
 }
