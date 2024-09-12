@@ -1,0 +1,3 @@
+C:\Users\MartinCastillo\Projects\DatingAppCourse\demo\DatingApp\API>dotnet watch
+
+C:\Users\MartinCastillo\Projects\DatingAppCourse\demo\DatingApp\client>ng serve  
