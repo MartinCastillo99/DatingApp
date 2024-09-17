@@ -17,7 +17,8 @@ public class AccountController(DataContext context, ITokenService tokenService) 
     {
         if (await UserExists(registerDTO.Username)) return BadRequest("Username is taken");
 
-        using var hmac = new HMACSHA512();
+        return Ok();
+        /* using var hmac = new HMACSHA512();
 
         var user = new AppUser
         {
@@ -33,7 +34,7 @@ public class AccountController(DataContext context, ITokenService tokenService) 
         {
             Username = user.UserName,
             Token = tokenService.CreateToken(user)
-        };
+        }; */
     }
 
     [HttpPost("login")]
@@ -50,14 +51,14 @@ public class AccountController(DataContext context, ITokenService tokenService) 
 
         for (int i = 0; i < computedHash.Length; i++)
         {
-            if(computedHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid Password");
+            if (computedHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid Password");
         }
 
         return new UserDTO
-    {
-        Username = user.UserName,
-        Token = tokenService.CreateToken(user)
-    };
+        {
+            Username = user.UserName,
+            Token = tokenService.CreateToken(user)
+        };
     }
 
     private async Task<bool> UserExists(string username)
