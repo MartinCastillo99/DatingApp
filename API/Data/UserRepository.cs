@@ -44,12 +44,12 @@ public class UserRepository(DataContext context, IMapper mapper) : IUserReposito
         return await PagedList<MemberDto>.CreateAsync(query.ProjectTo<MemberDto>(mapper.ConfigurationProvider), userParams.PageNumber, userParams.PageSize);
     }
 
-    public async Task<AppUser> GetUserByIdAsync(int id)
+    public async Task<AppUser?> GetUserByIdAsync(int id)
     {
         return await context.Users.FindAsync(id);
     }
 
-    public async Task<AppUser> GetUserByUsernameAsync(string username)
+    public async Task<AppUser?> GetUserByUsernameAsync(string username)
     {
         return await context.Users
         .Include(x => x.Photos)
